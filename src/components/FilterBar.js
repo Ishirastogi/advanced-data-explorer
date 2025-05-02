@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { PokemonContext } from '../contexts/PokemonContext';
 import '../styles/FilterBar.css';
 
+
+
 const FilterBar = () => {
   const {
     selectedTypes,

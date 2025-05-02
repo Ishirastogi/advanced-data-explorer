@@ -1,17 +1,26 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom"; // Import Link from React Router for navigation
+import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/PokemonCard.css";
-import useCompare from "../hooks/useCompare"; // Assuming this is a custom hook you created
-import { PokemonContext } from "../contexts/PokemonContext"; // Make sure this context is correctly set up
+import useCompare from "../hooks/useCompare";
+import { PokemonContext } from "../contexts/PokemonContext";
 
 const PokemonCard = ({ pokemon, isFavorite }) => {
-  const { toggleFavorite, favorites } = useContext(PokemonContext);
+  const { toggleFavorite } = useContext(PokemonContext);
   const { compareList, addToCompare } = useCompare();
 
-  // Check if the current Pokemon is already in the compare list
-  const isInCompareList = compareList.some((poke) => poke.id === pokemon.id);
+  const [isInCompareList, setIsInCompareList] = useState(false);
+
+  useEffect(() => {
+    const exists = compareList.some((poke) => poke.id === pokemon.id);
+    setIsInCompareList(exists);
+  }, [compareList, pokemon.id]);
 
   const types = pokemon.types.map((t) => t.type.name).join(", ");
+
+  const handleAddToCompare = () => {
+    addToCompare(pokemon);
+    setIsInCompareList(true); // Update local state immediately
+  };
 
   return (
     <div className="pokemon-card">
@@ -35,12 +44,12 @@ const PokemonCard = ({ pokemon, isFavorite }) => {
 
       {/* Add to Compare Button */}
       <button
-        className={`compare-btn ${isInCompareList ? "added" : ""}`}
-        onClick={() => addToCompare(pokemon)}
-        disabled={isInCompareList}
-      >
-        {isInCompareList ? "Added to Compare" : "Add to Compare"}
-      </button>
+  className="compare-btn"
+  onClick={handleAddToCompare}
+  disabled={isInCompareList}
+>
+  {"Add to Compare"}
+</button>
 
       {/* Detail Button */}
       <Link to={`/pokemon/${pokemon.id}`} className="detail-btn">

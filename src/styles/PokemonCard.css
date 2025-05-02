@@ -59,32 +59,43 @@ button:focus {
 .favorite-btn:hover {
   background-color: #ff3333;
 }
-
 .compare-btn {
-  background-color: #1e90ff;
-  color: #fff;
-}
-
-.compare-btn.added {
-  background-color: #0077ff;
+  background-color: #4CAF50; /* Green */
+  color: rgb(182, 88, 88);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
 }
 
 .compare-btn:hover {
-  background-color: #0066cc;
+  background-color: #45a049; /* Darker green on hover */
 }
 
+.compare-btn:disabled {
+  background-color: #9b2020; /* Light gray when disabled */
+  cursor: not-allowed;
+}
+
+.compare-btn.added {
+  background-color: #9e9e9e; /* Gray when already added */
+}
 .detail-btn button {
-  background-color: #32cd32;
-  color: #fff;
+  background-color: #59c959;
+  color: #ffffff2c;
 }
 
 .detail-btn button:hover {
-  background-color: #28a745;
+  background-color: #3a9850;
 }
 
 /* Optional: style the disabled buttons (for compare) */
 .compare-btn:disabled {
-  background-color: #d3d3d3;
+  background-color: #d3d3d3b1;
   cursor: not-allowed;
 }
 

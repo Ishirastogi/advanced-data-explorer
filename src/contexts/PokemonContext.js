@@ -1,51 +1,33 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useEffect, useState, useMemo } from 'react';
 
 export const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const [allPokemon, setAllPokemon] = useState([]);
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [sortOption, setSortOption] = useState('id-asc');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
-  const perPage = 20;
-
-  const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem('favorites');
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  const toggleFavorite = (pokemon) => {
-    const isFavorite = favorites.some((fav) => fav.id === pokemon.id);
-    const updated = isFavorite
-      ? favorites.filter((fav) => fav.id !== pokemon.id)
-      : [...favorites, pokemon];
-
-    setFavorites(updated);
-    localStorage.setItem('favorites', JSON.stringify(updated));
-  };
+  const itemsPerPage = 20;
 
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
         setLoading(true);
-        const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=150');
-        const data = await res.json();
-
-        const details = await Promise.all(
-          data.results.map(async (p) => {
-            const res = await fetch(p.url);
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=150');
+        const data = await response.json();
+        const pokemonDetails = await Promise.all(
+          data.results.map(async (pokemon) => {
+            const res = await fetch(pokemon.url);
             return res.json();
           })
         );
-
-        setAllPokemon(details);
+        setAllPokemon(pokemonDetails);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch Pokémon.');
+        console.error('Error fetching Pokémon:', err);
+        setError('Failed to load Pokémon.');
         setLoading(false);
       }
     };
@@ -53,79 +35,54 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemon();
   }, []);
 
-  useEffect(() => {
-    let list = [...allPokemon];
+  const filteredPokemon = useMemo(() => {
+    let filtered = [...allPokemon];
 
-    if (showFavoritesOnly) {
-      list = list.filter((p) => favorites.some((f) => f.id === p.id));
-    }
-
+    // Filter by selected type
     if (selectedTypes.length > 0) {
-      list = list.filter((p) =>
-        (p.types || []).map((t) => t.type.name).includes(selectedTypes[0])
+      filtered = filtered.filter((pokemon) =>
+        pokemon.types.some((t) => selectedTypes.includes(t.type.name))
       );
     }
 
-    switch (sortOption) {
-      case 'id-asc':
-        list.sort((a, b) => a.id - b.id);
-        break;
-      case 'id-desc':
-        list.sort((a, b) => b.id - a.id);
-        break;
-      case 'name-asc':
-        list.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'name-desc':
-        list.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      default:
-        break;
+    // Sorting logic
+    if (sortOption === 'id-asc') {
+      filtered.sort((a, b) => a.id - b.id);
+    } else if (sortOption === 'id-desc') {
+      filtered.sort((a, b) => b.id - a.id);
+    } else if (sortOption === 'name-asc') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === 'name-desc') {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
     }
 
-    setFilteredPokemon(list);
-    setCurrentPage(1);
-  }, [allPokemon, favorites, selectedTypes, showFavoritesOnly, sortOption]);
+    return filtered;
+  }, [allPokemon, selectedTypes, sortOption]);
 
-  const paginatedPokemon = filteredPokemon.slice(
-    (currentPage - 1) * perPage,
-    currentPage * perPage
-  );
+  const totalPages = Math.ceil(filteredPokemon.length / itemsPerPage);
 
-  const totalPages = Math.ceil(filteredPokemon.length / perPage);
-
-  const handleTypeSelect = (type) => {
-    if (selectedTypes[0] === type) {
-      setSelectedTypes([]);
-    } else {
-      setSelectedTypes([type]);
-    }
-    setCurrentPage(1);
-  };
+  const paginatedPokemon = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredPokemon.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredPokemon, currentPage]);
 
   return (
     <PokemonContext.Provider
       value={{
         allPokemon,
         filteredPokemon: paginatedPokemon,
-        selectedTypes,
-        setSelectedTypes: handleTypeSelect,
-        sortOption,
-        setSortOption,
         loading,
         error,
         currentPage,
         setCurrentPage,
         totalPages,
-        favorites,
-        toggleFavorite,
-        showFavoritesOnly,
-        setShowFavoritesOnly,
+        selectedTypes,
+        setSelectedTypes,
+        sortOption,
+        setSortOption,
       }}
     >
       {children}
     </PokemonContext.Provider>
   );
 };
-
-export default PokemonContext;
