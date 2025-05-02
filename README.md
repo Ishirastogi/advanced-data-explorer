@@ -1,14 +1,22 @@
-# 🎥 Video Upload UI – React + TypeScript
+# Pokémon Explorer 🧭
 
-A responsive and interactive video upload component built with **React** and **TypeScript**. Features include:
+A feature-rich React application that allows users to explore, filter, compare, and favorite the first 150 Pokémon using the [PokéAPI](https://pokeapi.co/).
 
-- ✅ Drag-and-drop file upload
-- ✅ Simulated progress bar (0% → 100%)
-- ✅ Instant video preview after upload
+---
 
-## 🚀 Demo
+## 🚀 Features
 
-Live Preview: [Click here to view on Vercel](https://your-deployment-url.vercel.app/)
+- 🔍 Search and filter Pokémon by type
+- ⚙️ Sort by ID or name (ascending/descending)
+- ❤️ Add and view favorites
+- ⚖️ Compare selected Pokémon
+- 🎲 Jump to a random Pokémon
+- 📄 Pagination for smooth navigation
+- 🌐 Pokémon detail pages with more info
+- 💾 Favorites and Compare list are stored using React Context
+- 🧠 Built with React, React Router, and custom hooks
 
-## 📂 Project Structure
+---
+
+## 📁 Folder Structure
 
