@@ -35,7 +35,7 @@
 .random-btn {
   background: none;
   border: none;
-  color: rgb(192, 96, 96);
+  color: rgb(231, 231, 231);
   font-size: 16px;
   cursor: pointer;
   padding: 8px 14px;
@@ -47,7 +47,7 @@
 .nav-link:hover,
 .compare-btn:hover,
 .random-btn:hover {
-  background-color: #633030;
+  background-color: #34495e;
 }
 
 .compare-btn {
@@ -62,4 +62,10 @@
 .compare-count {
   font-weight: bold;
   color: #f1c40f;
+}
+.favorite-count{
+  color: #ffffff;
+}
+.favorites-link{
+  color: #ffffff;
 }

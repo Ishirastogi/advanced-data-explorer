@@ -20,8 +20,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="page-title">Pokémon Explorer</h1>
-
+      
       {/* FilterBar should internally update selectedType via context */}
       <FilterBar />
 

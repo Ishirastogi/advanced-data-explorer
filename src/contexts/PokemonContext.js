@@ -9,8 +9,17 @@ export const PokemonProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [sortOption, setSortOption] = useState('id-asc');
+  const [favorites, setFavorites] = useState([]);
   const itemsPerPage = 20;
 
+  const toggleFavorite = (pokemon) => {
+    const isAlreadyFavorite = favorites.some(fav => fav.id === pokemon.id);
+    if (isAlreadyFavorite) {
+      setFavorites(favorites.filter(fav => fav.id !== pokemon.id));
+    } else {
+      setFavorites([...favorites, pokemon]);
+    }
+  };
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
@@ -80,6 +89,8 @@ export const PokemonProvider = ({ children }) => {
         setSelectedTypes,
         sortOption,
         setSortOption,
+        favorites,
+      toggleFavorite,
       }}
     >
       {children}

@@ -36,11 +36,12 @@ const PokemonCard = ({ pokemon, isFavorite }) => {
 
       {/* Favorite Button */}
       <button
-        className={`favorite-btn ${isFavorite ? "favorited" : ""}`}
-        onClick={() => toggleFavorite(pokemon)}
-      >
-        {isFavorite ? "Unfavorite" : "Favorite"}
-      </button>
+  className={`favorite-btn ${isFavorite ? "favorited" : ""}`}
+  onClick={() => toggleFavorite(pokemon)}
+  disabled={isFavorite} // ✅ disables the button if already favorited
+>
+  {isFavorite ? "Favorited" : "Favorite"}
+</button>
 
       {/* Add to Compare Button */}
       <button
