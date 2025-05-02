@@ -1,0 +1,61 @@
+.favorites-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .pokemon-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  .favorites-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .pokemon-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  .favorites-page {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .favorites-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .pokemon-list p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  

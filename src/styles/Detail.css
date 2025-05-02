@@ -1,0 +1,107 @@
+.detail-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detail-header {
+    text-align: center;
+  }
+  
+  .detail-img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .stat {
+    background: #f4f4f4;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  .compare-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .compare-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .compare-inputs input {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 180px;
+  }
+  
+  .compare-inputs button {
+    padding: 8px 16px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .compare-inputs button:hover {
+    background-color: #005fa3;
+  }
+  
+  .compare-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+  .compare-card {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 16px;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .pokemon-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pokemon-img {
+    height: 120px;
+    margin-bottom: 10px;
+  }
+  
+  .stats-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

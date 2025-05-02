@@ -1,0 +1,99 @@
+.favorites-page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .favorites-page h2 {
+    margin-bottom: 20px;
+    color: #3b4cca;
+  }
+  
+  .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  /* FavoritesPage.css */
+.favorites-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .favorites-page h1 {
+    margin-bottom: 20px;
+  }
+  
+  .pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .pokemon-card {
+    width: 220px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .pokemon-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .favorite-btn {
+    background-color: #ffcc00;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .favorite-btn:hover {
+    background-color: #ff9933;
+  }
+  
+  .favorite-btn.favorited {
+    background-color: #ff6666; /* Red color for removing favorites */
+  }
+  
+  .details-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .details-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Back to Home button */
+  .back-to-home-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .back-to-home-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  

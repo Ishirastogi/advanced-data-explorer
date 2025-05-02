@@ -1,0 +1,86 @@
+/* Main filter bar container */
+.filter-bar {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Sort section centered and clean */
+.sort-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sort-control label {
+  font-weight: 500;
+  font-size: 13px;
+  color: #444;
+}
+
+.sort-control select {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  max-width: 160px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.sort-control select:focus {
+  outline: none;
+  border-color: #3b4cca;
+}
+
+/* Type filter section */
+.type-control {
+  width: 100%;
+}
+
+.type-control label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+  text-align: center;
+}
+
+.type-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.type-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: capitalize;
+}
+
+.type-btn:hover {
+  background-color: #ddd;
+}
+
+.type-btn.selected {
+  background-color: #3b4cca;
+  color: #fff;
+  border-color: #3b4cca;
+}

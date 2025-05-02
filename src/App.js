@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { CompareProvider } from './contexts/CompareContext';
+import { PokemonProvider } from './contexts/PokemonContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Compare from './pages/Compare';
+import PokemonDetail from './pages/PokemonDetail';
+import FavoritesPage from './pages/FavoritesPage';
+import ErrorBoundary from './components/ErrorBoundary'; // Import the ErrorBoundary
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PokemonProvider>
+      <CompareProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/pokemon/:id" element={<PokemonDetail />} />
+            <Route
+              path="/compare"
+              element={
+                <ErrorBoundary>
+                  <Compare />
+                </ErrorBoundary>
+              }
+            />
+          </Routes>
+        </Router>
+      </CompareProvider>
+    </PokemonProvider>
   );
 }
 
